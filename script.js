@@ -1,14 +1,12 @@
-// Constants for API key and news API URL
+
 const API_KEY = "ef555cc72da843c4835681c813322194";
 const url = "https://newsapi.org/v2/everything?q=";
 
-// Function to fetch news based on the selected category
 async function fetchNews(query) {
     try {
         const response = await fetch(`${url}${query}&apiKey=${API_KEY}`);
         const data = await response.json();
         
-        // Call functions to display news articles
         displayBreakingNews(data.articles.slice(0, 2));
         bindData(data.articles.slice(2));
     } catch (error) {
@@ -16,7 +14,6 @@ async function fetchNews(query) {
     }
 }
 
-// Function to display breaking news
 function displayBreakingNews(articles) {
     const breakingNews1 = document.getElementById("breaking-news-1");
     const breakingNews2 = document.getElementById("breaking-news-2");
@@ -36,7 +33,6 @@ function displayBreakingNews(articles) {
     }
 }
 
-// Function to bind data to news cards
 function bindData(articles) {
     const cardsContainer = document.getElementById("cards-container");
     const newsCardTemplate = document.getElementById("template-news-card");
@@ -51,7 +47,6 @@ function bindData(articles) {
     });
 }
 
-// Function to fill data in a news card
 function fillDataInCard(cardClone, article) {
     const newsImg = cardClone.querySelector("#news-img");
     const newsTitle = cardClone.querySelector("#news-title");
@@ -72,12 +67,9 @@ function fillDataInCard(cardClone, article) {
         window.open(article.url, "_blank");
     });
 }
-
-// Function to update the live telecast iframe based on the selected category
 function updateLiveTelecast(id) {
     const liveTelecastContainer = document.getElementById("live-telecast-container");
 
-    // Remove existing iframe if it exists
     const existingIframe = liveTelecastContainer.querySelector("iframe");
     if (existingIframe) {
         liveTelecastContainer.removeChild(existingIframe);
@@ -126,8 +118,6 @@ function onNavItemClick(id) {
     curSelectedNav?.classList.remove("active");
     navItem.classList.add("active");
 }
-
-// Event listener for search button
 const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search-text");
 
